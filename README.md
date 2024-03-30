@@ -9,6 +9,7 @@
 This is the Pokémon TCG SDK Python implementation. It is a wrapper around the Pokémon TCG API of [pokemontcg.io](http://pokemontcg.io/).
 
 ## Requirements
+
 Python 3 is currently the only supported version for the sdk. More specifically, the package was developed using Python 3.9.
 
 ## Installation
@@ -27,7 +28,6 @@ Import (Card and Set will be most used)
     from pokemontcgsdk import Supertype
     from pokemontcgsdk import Subtype
     from pokemontcgsdk import Rarity
-
 
 ### API-Key
 
@@ -62,6 +62,7 @@ RestClient.configure('12345678-1234-1234-1234-123456789ABC')
     attacks
     convertedRetreatCost
     evolvesFrom
+    evolvesTo
     flavorText
     hp
     id
@@ -104,27 +105,27 @@ RestClient.configure('12345678-1234-1234-1234-123456789ABC')
 #### Filter Cards via query parameters
 
     cards = Card.where(q='set.name:generations supertype:pokemon')
-    
+
 #### Find all cards (will take awhile)
 
     cards = Card.all()
-    
+
 #### Get all cards, but only a specific page of data
 
     cards = Card.where(page=5, pageSize=250)
-    
+
 #### Find a set by code
 
     set = Set.find('base1')
-    
+
 #### Filter sets via query parameters
 
     sets = Set.where(q='legalities.standard:legal')
-    
+
 #### Get all Sets
 
     sets = Set.all()
-    
+
 #### Get all Types
 
     types = Type.all()

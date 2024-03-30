@@ -13,9 +13,10 @@ from pokemontcgsdk.tcgplayer import TCGPlayer
 from pokemontcgsdk.cardmarket import Cardmarket
 from pokemontcgsdk.weakness import Weakness
 
+
 @dataclass
-class Card():
-    RESOURCE = 'cards'
+class Card:
+    RESOURCE = "cards"
 
     abilities: Optional[List[Ability]]
     artist: Optional[str]
@@ -24,6 +25,7 @@ class Card():
     cardmarket: Optional[Cardmarket]
     convertedRetreatCost: Optional[int]
     evolvesFrom: Optional[str]
+    evolvesTo: Optional[List[str]]
     flavorText: Optional[str]
     hp: Optional[str]
     id: str
@@ -59,8 +61,12 @@ class Card():
 
     @staticmethod
     def transform(response):
-        if response.get('tcgplayer', {}).get('prices', {}).get('1stEditionNormal'):
-            response['tcgplayer']['prices']['firstEditionNormal'] = response['tcgplayer']['prices'].pop('1stEditionNormal')
-        if response.get('tcgplayer', {}).get('prices', {}).get('1stEditionHolofoil'):
-            response['tcgplayer']['prices']['firstEditionHolofoil'] = response['tcgplayer']['prices'].pop('1stEditionHolofoil')
+        if response.get("tcgplayer", {}).get("prices", {}).get("1stEditionNormal"):
+            response["tcgplayer"]["prices"]["firstEditionNormal"] = response[
+                "tcgplayer"
+            ]["prices"].pop("1stEditionNormal")
+        if response.get("tcgplayer", {}).get("prices", {}).get("1stEditionHolofoil"):
+            response["tcgplayer"]["prices"]["firstEditionHolofoil"] = response[
+                "tcgplayer"
+            ]["prices"].pop("1stEditionHolofoil")
         return response
